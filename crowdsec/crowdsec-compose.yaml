@@ -16,7 +16,7 @@ services:
       - traefik_traefik-logs:/var/log/traefik:ro
       - /var/log/auth.log:/var/log/auth.log:ro
     ports:
-      - "8080:8080" # CrowdSec API, Check if this port opens due to docker nftables
+      - "127.0.0.1:8080:8080"
     networks:
       - traefik-public
     restart: unless-stopped
