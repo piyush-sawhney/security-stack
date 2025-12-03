@@ -13,6 +13,7 @@ services:
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
       - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
+      - CROWDSEC_KEY=${CROWDSEC_KEY}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
