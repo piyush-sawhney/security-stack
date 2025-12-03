@@ -1,9 +1,7 @@
 api:
-  dashboard: true
-  insecure: true
+  dashboard: false
+  insecure: false
 entryPoints:
-  dashboard:
-    address: "127.0.0.1:8080"
   web:
     address: ":80"
     http:
@@ -31,8 +29,8 @@ providers:
 certificatesResolvers:
   cloudflare:
     acme:
-      # caServer: https://acme-v02.api.letsencrypt.org/directory
-      caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+      # caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
       email: piyush.sawhney@knaps.in
       storage: acme.json
       dnsChallenge:
