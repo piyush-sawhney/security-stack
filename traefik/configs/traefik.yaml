@@ -2,11 +2,9 @@ api:
   dashboard: true
   debug: false
   insecure: false
-
 entryPoints:
   dashboard:
     address: "127.0.0.1:8080"
-
   web:
     address: ":80"
     http:
@@ -15,7 +13,6 @@ entryPoints:
           to: websecure
           scheme: https
           permanent: true   
-
   websecure:
     address: ":443"
     http:
@@ -28,14 +25,15 @@ providers:
   docker:
     exposedByDefault: false
     network: traefik-public
-
   file:
     filename: /config.yaml
+
 
 certificatesResolvers:
   cloudflare:
     acme:
-      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      # caServer: https://acme-v02.api.letsencrypt.org/directory
+      caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
       email: piyush.sawhney@knaps.in
       storage: acme.json
       dnsChallenge:
@@ -43,19 +41,16 @@ certificatesResolvers:
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
-
   letsencrypt:
     acme:
       email: piyush.sawhney@knaps.in
       storage: acme.json
       httpChallenge:
-        entryPoints:
-          - web
-
+        entryPoint: ["web"]
+            
 log:
   level: "INFO"
   filePath: "/var/log/traefik/traefik.log"
-
 accessLog:
   filePath: "/var/log/traefik/access.log"
 
