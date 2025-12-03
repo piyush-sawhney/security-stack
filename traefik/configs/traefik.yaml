@@ -19,7 +19,7 @@ entryPoints:
       middlewares:
         - crowdsec-bouncer@file
       tls: 
-        options: "modern"
+        options: modern@file
 
 providers:
   docker:
