@@ -46,7 +46,7 @@ certificatesResolvers:
       email: piyush.sawhney@knaps.in
       storage: acme.json
       httpChallenge:
-        entryPoint: ["web"]
+        entryPoint: "web"
             
 log:
   level: "INFO"
