@@ -48,10 +48,7 @@ tls:
   options:
     modern:
       minVersion: VersionTLS13
-      cipherSuites: []
-      curves:
-        - CurveP256
-        - CurveP384
+      cipherSuites: []   # Traefik auto-handles TLS 1.3 suites
 
     intermediate:
       minVersion: VersionTLS12
