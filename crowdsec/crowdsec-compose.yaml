@@ -1,0 +1,34 @@
+services:
+  crowdsec:
+    image: crowdsecurity/crowdsec:latest
+    container_name: crowdsec
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      GID: "${GID-1000}"
+      COLLECTIONS: "crowdsecurity/linux crowdsecurity/traefik crowdsecurity/sshd crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-generic-rules crowdsecurity/base-http-scenarios"
+    volumes:
+      - ./configs/appsec.yaml:/etc/crowdsec/acquis.d/appsec.yaml:ro
+      - ./configs/traefik.yaml:/etc/crowdsec/acquis.d/traefik.yaml:ro
+      - ./configs/ssh.yaml:/etc/crowdsec/acquis.d/ssh.yaml:ro
+      - crowdsec-db:/var/lib/crowdsec/data/
+      - crowdsec-config:/etc/crowdsec/
+      - traefik_traefik-logs:/var/log/traefik:ro
+      - /var/log/auth.log:/var/log/auth.log:ro
+    ports:
+      - "8080:8080" # CrowdSec API, Check if this port opens due to docker nftables
+    networks:
+      - traefik-public
+    restart: unless-stopped
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  traefik_traefik-logs:
+    external: true
+  crowdsec-db:
+    external: false
+  crowdsec-config:
+    external: false
