@@ -2,6 +2,7 @@ api:
   dashboard: true
   debug: false
   insecure: false
+  entryPoint: dashboard
 entryPoints:
   dashboard:
     address: "127.0.0.1:8080"
